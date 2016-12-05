@@ -7,9 +7,10 @@ import {Logout} from '../logout';
 
 const mapStateToProps = (state) => ({
   numQuestions: state.questions.questions.length,
+  route: state.routing.locationBeforeTransitions.pathname,
 });
 
-const Navbar = ({numQuestions}) => (
+const Navbar = ({numQuestions, route}) => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
@@ -17,10 +18,10 @@ const Navbar = ({numQuestions}) => (
       </div>
 
       <ul className="nav navbar-nav">
-        <li>
+        <li className={route === '/' && 'active'}>
           <Link to="/">Browse questions <span className="badge">{numQuestions}</span></Link>
         </li>
-        <li>
+        <li className={route === '/create' && 'active'}>
           <Link to="/create">Create new question</Link>
         </li>
       </ul>
