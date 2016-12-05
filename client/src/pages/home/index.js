@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 // our packages
 import {getAllQuestions, answerQuestion} from '../../store/actions';
 import Question from '../../components/question';
+import {Logout} from '../../components/logout';
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
@@ -36,6 +37,9 @@ const Home = ({fetchQuestions, doAnswer, questions}) => {
             <li>
               <Link to="/create">Create new question</Link>
             </li>
+          </ul>
+          <ul className="nav navbar-nav navbar-right">
+            <Logout />
           </ul>
         </div>
       </nav>

@@ -6,6 +6,7 @@ import moment from 'moment';
 
 // our packages
 import {createQuestion} from '../../store/actions';
+import {Logout} from '../../components/logout';
 
 const mapStateToProps = (state) => ({
   // questions: state.questions.questions,
@@ -46,6 +47,9 @@ const Create = ({doCreateQuestion}) => {
             <li>
               <a><b>Create new question</b></a>
             </li>
+          </ul>
+          <ul className="nav navbar-nav navbar-right">
+            <Logout />
           </ul>
         </div>
       </nav>

@@ -10,12 +10,12 @@ try {
   console.error('Error parsing user data', e);
 }
 
-const initialState = {
+const initialState = () => ({
   token: localStorage.getItem('user.token'),
   user,
-};
+});
 
-export const auth = (state = initialState, action) => {
+export const auth = (state = initialState(), action) => {
   switch (action.type) {
     case ActionTypes.REGISTER_SUCCESS:
       return {
@@ -27,6 +27,10 @@ export const auth = (state = initialState, action) => {
       return {
         ...action.payload,
       };
+    case ActionTypes.DO_LOGOUT:
+      localStorage.removeItem('user.token');
+      localStorage.removeItem('user.data');
+      return initialState();
     case ActionTypes.LOGIN_ERROR:
     case ActionTypes.REGISTER_ERROR:
       // TODO: probably necessary in the future
