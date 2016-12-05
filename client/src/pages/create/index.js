@@ -6,7 +6,7 @@ import moment from 'moment';
 
 // our packages
 import {createQuestion} from '../../store/actions';
-import {Logout} from '../../components/logout';
+import Navbar from '../../components/navbar';
 
 const mapStateToProps = (state) => ({
   // questions: state.questions.questions,
@@ -34,26 +34,7 @@ const Create = ({doCreateQuestion}) => {
 
   return (
     <div>
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand">Brand</Link>
-          </div>
-
-          <ul className="nav navbar-nav">
-            <li>
-              <Link to="/">Browse questions</Link>
-            </li>
-            <li>
-              <a><b>Create new question</b></a>
-            </li>
-          </ul>
-          <ul className="nav navbar-nav navbar-right">
-            <Logout />
-          </ul>
-        </div>
-      </nav>
-
+      <Navbar />
       <div>
         <form>
           <div className="form-group">
