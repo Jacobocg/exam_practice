@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
 import {push} from 'react-router-redux';
 import {logoutAction} from '../../store/actions';
 
@@ -10,7 +9,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Logout = ({onLogoutClick, navToLogin}) => {
-
   const handleLogoutClick = (e) => {
     e.preventDefault();
     onLogoutClick();
@@ -26,6 +24,7 @@ const Logout = ({onLogoutClick, navToLogin}) => {
 
 Logout.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
+  navToLogin: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Logout);
