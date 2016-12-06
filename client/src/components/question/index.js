@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({question, onAnswer}) => {
+export default ({question, onAnswer, userId}) => {
   let answerInput;
 
   const handleClick = (e) => {
@@ -13,7 +13,7 @@ export default ({question, onAnswer}) => {
   return (
     <div className="panel panel-default">
       <div className="panel-heading">{question.text}
-        <button className="btn btn-xs btn-warning glyphicon glyphicon-trash pull-right"></button>
+        <button className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${userId !== question.owner ? 'disabled' : ''}`}></button>
       </div>
 
       <div className="panel-body">

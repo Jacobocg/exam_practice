@@ -11,6 +11,7 @@ import Navbar from '../../components/navbar';
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
+  userId: state.auth.user.id,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,15 +20,15 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-const Home = ({fetchQuestions, doAnswer, questions}) => {
+const Home = ({fetchQuestions, doAnswer, questions, userId}) => {
   fetchQuestions();
 
   return (
     <div>
-      
+
       <div>
         {questions.map(question => (
-          <Question key={question.id} question={question} onAnswer={doAnswer} />
+          <Question key={question.id} question={question} userId={userId} onAnswer={doAnswer} />
         ))}
       </div>
     </div>
