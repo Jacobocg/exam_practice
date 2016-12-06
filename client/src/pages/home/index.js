@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 // our packages
 import {getAllQuestions, answerQuestion} from '../../store/actions';
 import Question from '../../components/question';
-import Navbar from '../../components/navbar';
+import Filterbar from '../../components/filterbar';
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
@@ -25,7 +25,7 @@ const Home = ({fetchQuestions, doAnswer, questions, userId}) => {
 
   return (
     <div>
-
+      <Filterbar />
       <div>
         {questions.map(question => (
           <Question key={question.id} question={question} userId={userId} onAnswer={doAnswer} />
