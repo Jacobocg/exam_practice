@@ -34,7 +34,7 @@ const Create = ({doCreateQuestion}) => {
 
   return (
     <div>
-      <Navbar />
+      
       <div>
         <form>
           <div className="form-group">

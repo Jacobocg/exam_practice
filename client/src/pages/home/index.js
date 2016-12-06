@@ -24,7 +24,7 @@ const Home = ({fetchQuestions, doAnswer, questions}) => {
 
   return (
     <div>
-      <Navbar />
+      
       <div>
         {questions.map(question => (
           <Question key={question.id} question={question} onAnswer={doAnswer} />
