@@ -4,12 +4,18 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Notification from './notification';
 import transitions from './transitions.css';
+import {removeAllNotificationsAction} from '../../store/actions';
 
 const mapStateToProps = state => ({
   notifications: state.notifications,
+  thereAreNotifications: state.notifications.length !== 0,
 });
 
-const Notifications = ({notifications}) => (
+const mapDispatchToProps = dispatch => ({
+  onRemoveAllNotificationsClick: () => dispatch(removeAllNotificationsAction()),
+});
+
+const Notifications = ({notifications, onRemoveAllNotificationsClick, thereAreNotifications}) => (
   <div>
     <ReactCSSTransitionGroup
       transitionName={transitions}
@@ -21,11 +27,18 @@ const Notifications = ({notifications}) => (
         ))
       }
     </ReactCSSTransitionGroup>
+    {
+      thereAreNotifications ?
+        <button className="btn btn-default" onClick={() => onRemoveAllNotificationsClick()}>
+          Clear notifications
+        </button> : ''
+    }
   </div>
 );
 
 Notifications.propTypes = {
   notifications: PropTypes.array.isRequired,
+  onRemoveAllNotificationsClick: PropTypes.func.required,
 };
 
-export default connect(mapStateToProps)(Notifications);
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
