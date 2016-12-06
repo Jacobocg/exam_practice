@@ -11,7 +11,7 @@ import Navbar from '../../components/navbar';
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
-  userId: state.auth.user.id,
+  userId: state.auth.user && state.auth.user.id,
 });
 
 const mapDispatchToProps = (dispatch) => ({
