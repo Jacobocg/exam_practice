@@ -4,6 +4,7 @@ export const HELLO_WORLD_END = 'HELLO_WORLD_END';
 // auth actions
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_LOGOUT = 'DO_LOGOUT';
+export const DO_LOGOUT_SUCCESS = 'DO_LOGOUT_SUCCESS';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const DO_REGISTER = 'DO_REGISTER';
