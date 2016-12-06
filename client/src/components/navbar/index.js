@@ -30,7 +30,7 @@ const yesAuth = (numQuestions, route) => (
 const noAuth = (numQuestions, route) => (
   <ul className="nav navbar-nav navbar-right">
     <li className={route === '/login' && 'active'}>
-      <Link to="/login">Login</Link>
+      <Link to="/login"><span className="glyphicon glyphicon-log-in" aria-hidden="true" /> Login</Link>
     </li>
     <li className={route === '/register' && 'active'}>
       <Link to="/register">Register</Link>
