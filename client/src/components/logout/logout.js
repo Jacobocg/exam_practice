@@ -1,21 +1,25 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
+import {push} from 'react-router-redux';
 import {logoutAction} from '../../store/actions';
 
 const mapDispatchToProps = (dispatch) => ({
   onLogoutClick: () => dispatch(logoutAction()),
+  navToLogin: () => dispatch(push('/login')),
 });
 
-const Logout = ({onLogoutClick}) => {
+const Logout = ({onLogoutClick, navToLogin}) => {
 
   const handleLogoutClick = (e) => {
     e.preventDefault();
     onLogoutClick();
+    setImmediate(() => navToLogin());
   };
 
   return (
     <li>
-      <a href="#" onClick={handleLogoutClick}>logout</a>
+      <a href="#" onClick={handleLogoutClick}>Logout</a>
     </li>
   );
 };
