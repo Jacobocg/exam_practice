@@ -38,7 +38,7 @@ const Notifications = ({notifications, onRemoveAllNotificationsClick, thereAreNo
 
 Notifications.propTypes = {
   notifications: PropTypes.array.isRequired,
-  onRemoveAllNotificationsClick: PropTypes.func.required,
+  onRemoveAllNotificationsClick: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
