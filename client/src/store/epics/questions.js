@@ -49,4 +49,3 @@ export const createQuestion = action$ => action$
       payload: {error},
     })),
   );
-

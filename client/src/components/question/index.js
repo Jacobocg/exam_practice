@@ -1,6 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-export default ({question, onAnswer, userId}) => {
+import {deleteQuestion} from '../../store/actions';
+
+const mapDispatchToProps = dispatch => ({
+  onRemoveQuestionClick: questionId => dispatch(deleteQuestion(questionId)),
+});
+
+const Question = ({question, onAnswer, userId, onRemoveQuestionClick}) => {
   let answerInput;
 
   const handleClick = (e) => {
@@ -13,7 +20,10 @@ export default ({question, onAnswer, userId}) => {
   return (
     <div className="panel panel-default">
       <div className="panel-heading">{question.text}
-        <button className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${userId !== question.owner ? 'disabled' : ''}`}></button>
+        <button
+          className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${userId !== question.owner ? 'disabled' : ''}`}
+          onClick={() => onRemoveQuestionClick(question.id)}>
+        </button>
       </div>
 
       <div className="panel-body">
@@ -38,3 +48,5 @@ export default ({question, onAnswer, userId}) => {
     </div>
   );
 };
+
+export default connect(null, mapDispatchToProps)(Question);
