@@ -9,9 +9,10 @@ const mapStateToProps = (state) => ({
   numQuestions: state.questions.questions.length,
   route: state.routing.locationBeforeTransitions.pathname,
   authenticated: state.auth.token !== null,
+  userName: state.auth.user !== null && state.auth.user.login,
 });
 
-const yesAuth = (numQuestions, route) => (
+const yesAuth = (numQuestions, route, userName) => (
   <div>
     <ul className="nav navbar-nav">
       <li className={route === '/' && 'active'}>
@@ -22,12 +23,15 @@ const yesAuth = (numQuestions, route) => (
       </li>
     </ul>
     <ul className="nav navbar-nav navbar-right">
+      <li>
+        <b>{userName}</b>
+      </li>
       <Logout />
     </ul>
   </div>
 );
 
-const noAuth = (numQuestions, route) => (
+const noAuth = (route) => (
   <ul className="nav navbar-nav navbar-right">
     <li className={route === '/login' && 'active'}>
       <Link to="/login"><span className="glyphicon glyphicon-log-in" aria-hidden="true" /> Login</Link>
@@ -38,13 +42,13 @@ const noAuth = (numQuestions, route) => (
   </ul>
 );
 
-const Navbar = ({numQuestions, route, authenticated}) => (
+const Navbar = ({numQuestions, route, authenticated, userName}) => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
         <Link to="/" className="navbar-brand">Brand</Link>
       </div>
-      {authenticated ? yesAuth(numQuestions, route) : noAuth(numQuestions, route)}
+      {authenticated ? yesAuth(numQuestions, route, userName) : noAuth(numQuestions, route)}
     </div>
   </nav>
 );
