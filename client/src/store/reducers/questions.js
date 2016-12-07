@@ -6,10 +6,7 @@ export const questions = (state = initialState, action) => {
   switch (action.type) {
     // all questions logic
     case ActionTypes.GET_ALL_QUESTIONS:
-      return {
-        questions: [],
-        status: 'loading...',
-      };
+      return {...state, status: 'loading'};
     case ActionTypes.GET_ALL_QUESTIONS_SUCCESS:
       return {
         questions: action.payload.questions,
@@ -30,6 +27,10 @@ export const questions = (state = initialState, action) => {
     }
     case ActionTypes.CREATE_QUESTION_SUCCESS: {
       const newQuestions = [...state.questions, action.payload];
+      return {...state, questions: newQuestions};
+    }
+    case ActionTypes.DELETE_QUESTION: {
+      const newQuestions = state.questions.filter(question => question.id !== action.questionId);
       return {...state, questions: newQuestions};
     }
     default:
