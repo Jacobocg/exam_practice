@@ -24,6 +24,7 @@ const Question = ({question, onAnswer, userId, onRemoveQuestionClick}) => {
           className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${userId !== question.owner ? 'hidden' : ''}`}
           onClick={() => onRemoveQuestionClick(question.id)}>
         </button>
+        <span className="pull-right">Expira el: {question.expirationDate}</span>
       </div>
 
       <div className="panel-body">
