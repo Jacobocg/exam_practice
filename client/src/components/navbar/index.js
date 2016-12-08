@@ -7,7 +7,7 @@ import {Logout} from '../logout';
 
 const mapStateToProps = (state) => ({
   numQuestions: state.questions.questions.length,
-  route: state.routing.locationBeforeTransitions.pathname,
+  route: state.routing.locationBeforeTransitions.pathname, // esto provoca el warning al logearse
   authenticated: state.auth.token !== null,
   userName: state.auth.user !== null && state.auth.user.login,
 });
@@ -48,7 +48,7 @@ const Navbar = ({numQuestions, route, authenticated, userName}) => (
       <div className="navbar-header">
         <Link to="/" className="navbar-brand">Brand</Link>
       </div>
-      {authenticated ? yesAuth(numQuestions, route, userName) : noAuth(numQuestions, route)}
+      {authenticated ? yesAuth(numQuestions, route, userName) : noAuth(route)}
     </div>
   </nav>
 );

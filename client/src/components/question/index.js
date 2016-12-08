@@ -21,7 +21,7 @@ const Question = ({question, onAnswer, userId, onRemoveQuestionClick}) => {
     <div className="panel panel-default">
       <div className="panel-heading">{question.text}
         <button
-          className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${userId !== question.owner ? 'disabled' : ''}`}
+          className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${userId !== question.owner ? 'hidden' : ''}`}
           onClick={() => onRemoveQuestionClick(question.id)}>
         </button>
       </div>
