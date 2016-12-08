@@ -66,3 +66,8 @@ export const deleteQuestion = questionId => ({
   type: ActionTypes.DELETE_QUESTION,
   questionId,
 });
+
+export const searchQuestions = tag => ({
+  type: ActionTypes.SEARCH_QUESTIONS,
+  tag,
+});

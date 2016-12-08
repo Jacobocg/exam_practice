@@ -33,6 +33,10 @@ export const questions = (state = initialState, action) => {
       const newQuestions = state.questions.filter(question => question.id !== action.questionId);
       return {...state, questions: newQuestions};
     }
+    case ActionTypes.SEARCH_QUESTIONS: {
+      const newQuestions = state.questions.filter(question => question.text.toLowerCase().indexOf(action.tag.toLowerCase()) !== -1);
+      return {...state, questions: newQuestions, search: true};
+    }
     default:
       return state;
   }
