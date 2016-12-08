@@ -20,7 +20,12 @@ class Question extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.loadMoreAnswers = this.loadMoreAnswers.bind(this);
+    this.hideAnswers = this.hideAnswers.bind(this);
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({numAnswers: nextProps.question.answers.length});
+  // }
 
   handleClick(e) {
     e.preventDefault();
@@ -34,21 +39,27 @@ class Question extends Component {
     this.setState({numAnswersShow: this.state.numAnswersShow + 5});
   }
 
+  hideAnswers(e) {
+    e.preventDefault();
+    this.setState({numAnswersShow: 5});
+  }
+
   render() {
     let showAnswers = this.props.question.answers.map((answer, i) => (
       <li className="list-group-item" key={i}>{answer.answer}</li>
     ));
     let loadMoreButton = '';
+    let hideButton = <button className="btn btn-xs btn-info pull-right" type="button" onClick={this.hideAnswers}>Hide</button>;
     if (this.state.numAnswersShow < this.state.numAnswers) {
       showAnswers = showAnswers.slice(0, this.state.numAnswersShow);
-      loadMoreButton = <button className="btn btn-xs btn-info pull-right" type="button" onClick={this.loadMoreAnswers}>Load more</button>;
+      loadMoreButton = <button className="btn btn-xs btn-info pull-right" type="button" onClick={this.loadMoreAnswers} style={{marginLeft: '10px'}}>Load more</button>;
     }
     return (
       <div className="panel panel-default">
         <div className="panel-heading">{this.props.question.text}
           <button
             className={`btn btn-xs btn-warning glyphicon glyphicon-trash pull-right ${this.props.userId !== this.props.question.owner ? 'hidden' : ''}`}
-            onClick={() => onRemoveQuestionClick(this.props.question.id)}>
+            onClick={() => this.props.onRemoveQuestionClick(this.props.question.id)}>
           </button>
           <span className="pull-right">Expira el: {this.props.question.expirationDate}</span>
         </div>
@@ -60,6 +71,7 @@ class Question extends Component {
                 {showAnswers}
               </ul>
               {loadMoreButton}
+              {hideButton}
             </div>
           ) : 'No answers yet'}
         </div>
