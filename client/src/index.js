@@ -18,6 +18,7 @@ import {requireAuth} from './util';
 import Home from './pages/home';
 import Create from './pages/create';
 import Login from './pages/login';
+import Profile from './pages/profile';
 import Register from './pages/register';
 import NotFound from './pages/notfound';
 
@@ -33,6 +34,7 @@ ReactDOM.render((
         <Route path="login" component={Login} />
         <Route path="create" component={Create} />
         <Route path="register" component={Register} />
+        <Route path="profile" component={Profile} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

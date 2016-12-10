@@ -24,7 +24,7 @@ const yesAuth = (numQuestions, route, userName) => (
     </ul>
     <ul className="nav navbar-nav navbar-right">
       <li>
-        <p className="navbar-text">Welcome <b><a href="#" className="navbar-link">{userName}</a></b></p>
+        <p className="navbar-text">Welcome <b><Link to="/profile" className="navbar-link">{userName}</Link></b></p>
       </li>
       <Logout />
     </ul>

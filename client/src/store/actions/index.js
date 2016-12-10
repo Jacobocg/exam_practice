@@ -75,3 +75,8 @@ export const searchQuestions = tag => ({
 export const filterNoAnswerQuestions = () => ({
   type: ActionTypes.FILTER_NO_ANSWER_QUESTIONS,
 });
+
+export const getUserProfile = userId => ({
+  type: ActionTypes.GET_USER_PROFILE,
+  userId,
+});
