@@ -30,6 +30,15 @@ const Filterbar = ({onSearchQuestionsClick, isSearch, onShowAllQuestionsClick, o
     return false;
   };
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    if (searchInput.value !== '') {
+      onSearchQuestionsClick(searchInput.value);
+      // searchInput.value = '';
+    }
+    return false;
+  };
+
   const handleClickShowAll = (e) => {
     e.preventDefault();
     onShowAllQuestionsClick();
@@ -49,7 +58,7 @@ const Filterbar = ({onSearchQuestionsClick, isSearch, onShowAllQuestionsClick, o
         <button className="btn btn-info navbar-btn" type="button" >Ordenar</button>
         <form className="navbar-form navbar-right">
           <div className="input-group">
-            <input type="text" id="searchInput" className="form-control" placeholder="Search..." ref={(i) => { searchInput = i; }}/>
+            <input type="text" id="searchInput" className="form-control" placeholder="Search..." onChange={handleChange} ref={(i) => { searchInput = i; }}/>
             <span className="input-group-btn">
               <button className="btn btn-info" type="button" onClick={handleClick}>
                 <span className="glyphicon glyphicon-search" aria-hidden="true" />
