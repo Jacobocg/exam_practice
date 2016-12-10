@@ -71,3 +71,7 @@ export const searchQuestions = tag => ({
   type: ActionTypes.SEARCH_QUESTIONS,
   tag,
 });
+
+export const filterNoAnswerQuestions = () => ({
+  type: ActionTypes.FILTER_NO_ANSWER_QUESTIONS,
+});

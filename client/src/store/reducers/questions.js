@@ -37,6 +37,10 @@ export const questions = (state = initialState, action) => {
       const newQuestions = state.questions.filter(question => question.text.toLowerCase().indexOf(action.tag.toLowerCase()) !== -1);
       return {...state, questions: newQuestions, search: true};
     }
+    case ActionTypes.FILTER_NO_ANSWER_QUESTIONS: {
+      const newQuestions = state.questions.filter(question => question.answers.length === 0);
+      return {...state, questions: newQuestions, search: true};
+    }
     default:
       return state;
   }
