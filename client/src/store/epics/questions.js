@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs/Observable';
 import * as ActionTypes from '../actionTypes';
+import * as Actions from '../actions';
 import {signRequest} from '../../util';
 
 export const getAllQuestions = action$ => action$
@@ -40,10 +41,13 @@ export const createQuestion = action$ => action$
   .switchMap(({headers, payload}) => Observable
     .ajax.post('http://localhost:8080/api/question', payload, headers)
     .map(res => res.response)
-    .map(question => ({
+    .mergeMap(question => Observable.of({
       type: ActionTypes.CREATE_QUESTION_SUCCESS,
       payload: question,
-    }))
+    },
+    Actions.addNotificationAction(
+      {text: 'Question created', alertType: 'info'}),
+    ))
     .catch(error => Observable.of({
       type: ActionTypes.CREATE_QUESTION_ERROR,
       payload: {error},
@@ -56,9 +60,12 @@ export const deleteQuestion = action$ => action$
     .switchMap(({headers, questionId}) => Observable
       .ajax.delete(`http://localhost:8080/api/question/${questionId}`, headers)
       .map(res => res.response)
-      .map(() => ({
+      .mergeMap(() => Observable.of({
         type: ActionTypes.DELETE_QUESTION_SUCCESS,
-      }))
+      },
+      Actions.addNotificationAction(
+        {text: 'Question deleted', alertType: 'info'}),
+      ))
       .catch(error => Observable.of({
         type: ActionTypes.DELETE_QUESTION_ERROR,
         payload: {error},
