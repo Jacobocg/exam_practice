@@ -17,20 +17,28 @@ class Question extends Component {
       answerInput: '',
       numAnswers: this.props.question.answers.length,
       numAnswersShow: NUMBER_ANSWERS_LOADED,
+      votes: 0,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleVoteClick = this.handleVoteClick.bind(this);
     this.loadMoreAnswers = this.loadMoreAnswers.bind(this);
     this.hideAnswers = this.hideAnswers.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({numAnswers: nextProps.question.answers.length});
-  // }
+  componentWillReceiveProps(nextProps) {
+   this.setState({numAnswers: nextProps.question.answers.length});
+  }
 
   handleClick(e) {
     e.preventDefault();
     this.props.onAnswer({question: this.props.question, answer: this.state.answerInput.value});
     this.state.answerInput.value = '';
+    return false;
+  }
+
+  handleVoteClick(e) {
+    e.preventDefault();
+    this.setState({votes: this.state.votes + 1 >= 50 ? 50 : this.state.votes + 1});
     return false;
   }
 
@@ -63,7 +71,14 @@ class Question extends Component {
           </button>
           <span className="pull-right">Expira el: {this.props.question.expirationDate}</span>
         </div>
-
+        <div className="panel-heading">
+          <div className="progress pull-left" style={{width: '80%'}}>
+            <div className="progress-bar" role="progressbar" aria-valuenow={this.state.votes} aria-valuemin="0" aria-valuemax="100" style={{width: this.state.votes * 2 + '%'}}>
+              {this.state.votes}
+            </div>
+          </div>
+          <span onClick={this.handleVoteClick} className="glyphicon glyphicon-arrow-up" aria-hidden="true" />
+        </div>
         <div className="panel-body">
           {this.props.question.answers.length > 0 ? (
             <div>
