@@ -80,3 +80,12 @@ export const getUserProfile = userId => ({
   type: ActionTypes.GET_USER_PROFILE,
   userId,
 });
+
+// export const voteQuestion = questionId => ({
+//   type: ActionTypes.VOTE_QUESTION,
+//   questionId,
+// });
+//
+// export const sortQuestionsByVotes = () => ({
+//   type: ActionTypes.SORT_QUESTIONS_BY_VOTES,
+// });

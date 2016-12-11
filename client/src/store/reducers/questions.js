@@ -41,6 +41,18 @@ export const questions = (state = initialState, action) => {
       const newQuestions = state.questions.filter(question => question.answers.length === 0);
       return {...state, questions: newQuestions, search: true};
     }
+    // case ActionTypes.VOTE_QUESTION: {
+    //   const newQuestions = state.questions.map(question => question);
+    //   const index = newQuestions.findIndex(question => question.id === action.questionId);
+    //   newQuestions[index].votes = newQuestions[index].votes ? ++newQuestions[index].votes : newQuestions[index].votes = 1;
+    //   return {...state, questions: newQuestions};
+    // }
+    // case ActionTypes.SORT_QUESTIONS_BY_VOTES: {
+    //   const newQuestions = state.questions.sort((a, b) => {
+    //     return 0;
+    //   });
+    //   return {...state, questions: newQuestions, search: true};
+    // }
     default:
       return state;
   }
