@@ -34,8 +34,7 @@ const Create = ({doCreateQuestion}) => {
 
   return (
     <div>
-      
-      <div>
+      <div className="jumbotron">
         <form>
           <div className="form-group">
             <label htmlFor="questionText">Question text</label>
@@ -57,7 +56,7 @@ const Create = ({doCreateQuestion}) => {
               ref={(d) => { questionDate = d; }}
             />
           </div>
-          <button type="submit" className="btn btn-default" onClick={handleCreate}>
+          <button type="submit" className="btn btn-default btn-info" onClick={handleCreate}>
             Create new question
           </button>
         </form>
